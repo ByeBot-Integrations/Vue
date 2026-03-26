@@ -1,4 +1,4 @@
-import { validateCaptchacatToken } from '@captchacat/vue/server'
+import { validateByebotToken } from '@byebot/vue/server'
 
 export default defineEventHandler(async (event) => {
   const formData = await readMultipartFormData(event)
@@ -14,14 +14,14 @@ export default defineEventHandler(async (event) => {
     }
   }
 
-  const { username, 'captchacat-token': token } = fields
+  const { username, 'byebot-token': token } = fields
 
   // Validate captcha token
   if (!token) {
     throw createError({ statusCode: 400, message: 'Captcha token missing' })
   }
 
-  const result = await validateCaptchacatToken({
+  const result = await validateByebotToken({
     apiKey: 'd4d23b11b464dcc984ad',
     token,
   })

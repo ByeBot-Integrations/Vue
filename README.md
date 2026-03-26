@@ -1,33 +1,33 @@
-# @captchacat/vue
+# @byebot/vue
 
-Vue 3 integration for Captchacat.
+Vue 3 integration for Byebot.
 
-GitHub: https://github.com/Captchacat-Integrations/Vue
+GitHub: https://github.com/ByeBot-Integrations/Vue
 
 ## Installation
 
 ```bash
-npm install @captchacat/vue
+npm install @byebot/vue
 ```
 
 ## Usage
 
 ### Basic Form
 
-The captcha widget automatically adds a hidden `captchacat-token` field to the parent form.
+The captcha widget automatically adds a hidden `byebot-token` field to the parent form.
 
 ```vue
 <template>
   <form action="/api/login" method="POST">
     <input name="email" type="email" />
     <input name="password" type="password" />
-    <Captchacat site-key="your-site-key" />
+    <Byebot site-key="your-site-key" />
     <button type="submit">Login</button>
   </form>
 </template>
 
 <script setup>
-import { Captchacat } from "@captchacat/vue";
+import { Byebot } from "@byebot/vue";
 </script>
 ```
 
@@ -37,7 +37,7 @@ Use `@verify` event to know when verification completes.
 
 ```vue
 <template>
-  <Captchacat site-key="your-site-key" @verify="handleVerify" />
+  <Byebot site-key="your-site-key" @verify="handleVerify" />
 </template>
 
 <script setup>
@@ -51,14 +51,14 @@ const handleVerify = (token: string) => {
 
 ```ts
 // Nuxt 3: server/api/login.post.ts
-import { validateCaptchacatToken } from "@captchacat/vue/server";
+import { validateByebotToken } from "@byebot/vue/server";
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
-  const token = body["captchacat-token"];
+  const token = body["byebot-token"];
 
-  const result = await validateCaptchacatToken({
-    apiKey: process.env.CAPTCHACAT_API_KEY!,
+  const result = await validateByebotToken({
+    apiKey: process.env.BYEBOT_API_KEY!,
     token,
   });
 
@@ -72,7 +72,7 @@ export default defineEventHandler(async (event) => {
 
 ## API
 
-### `<Captchacat />`
+### `<Byebot />`
 
 | Prop       | Type     | Required | Description                      |
 | ---------- | -------- | -------- | -------------------------------- |
@@ -82,7 +82,7 @@ export default defineEventHandler(async (event) => {
 | -------- | -------- | ------------------------------- |
 | `verify` | `string` | Emitted on verification success |
 
-### `validateCaptchacatToken(options)`
+### `validateByebotToken(options)`
 
 | Option   | Type     | Required |
 | -------- | -------- | -------- |

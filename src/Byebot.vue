@@ -11,7 +11,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, watch } from 'vue'
 
-const BASE_URL = 'https://challenge.captchacat.com'
+const BASE_URL = 'https://challenge.byebot.de'
 
 const props = defineProps<{
   siteKey: string
@@ -23,7 +23,7 @@ const emit = defineEmits<{
 
 declare global {
   interface Window {
-    Captchacat?: {
+    Byebot?: {
       render: (container?: HTMLElement) => void
     }
     [key: string]: any
@@ -35,7 +35,7 @@ const callbackName = ref('')
 
 onMounted(() => {
   // Generate unique callback name
-  callbackName.value = `captchacat_cb_${Math.random().toString(36).substring(7)}`
+  callbackName.value = `byebot_cb_${Math.random().toString(36).substring(7)}`
 
   // Set up global callback bridge
   window[callbackName.value] = (token: string) => {
@@ -46,8 +46,8 @@ onMounted(() => {
   const scriptUrl = `${BASE_URL}/ray/widget.js`
 
   const handleInit = () => {
-    if (window.Captchacat?.render && containerRef.value) {
-      window.Captchacat.render(containerRef.value)
+    if (window.Byebot?.render && containerRef.value) {
+      window.Byebot.render(containerRef.value)
     }
   }
 
@@ -63,7 +63,7 @@ onMounted(() => {
     document.body.appendChild(script)
   } else {
     // Script exists - check if already loaded
-    if (window.Captchacat) {
+    if (window.Byebot) {
       handleInit()
     } else {
       script.addEventListener('load', handleInit)
@@ -87,9 +87,9 @@ onUnmounted(() => {
 watch(
   () => props.siteKey,
   () => {
-    if (window.Captchacat?.render && containerRef.value) {
+    if (window.Byebot?.render && containerRef.value) {
       containerRef.value.innerHTML = ''
-      window.Captchacat.render(containerRef.value)
+      window.Byebot.render(containerRef.value)
     }
   }
 )

@@ -1,6 +1,6 @@
 <template>
   <main :style="styles.main">
-    <h1 :style="styles.pageTitle">Captchacat - Nuxt Demo</h1>
+    <h1 :style="styles.pageTitle">Byebot - Nuxt Demo</h1>
 
     <div :style="styles.container">
       <form @submit.prevent="handleSubmit" :style="styles.form">
@@ -21,7 +21,7 @@
           :style="styles.input"
         />
 
-        <Captchacat site-key="bd1cc81b04564d3f899e" @verify="handleVerify" />
+        <Byebot site-key="bd1cc81b04564d3f899e" @verify="handleVerify" />
 
         <div :style="styles.statusRow">
           <span
@@ -53,7 +53,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Captchacat } from '@captchacat/vue'
+import { Byebot } from '@byebot/vue'
 
 const username = ref('')
 const password = ref('')
@@ -71,7 +71,7 @@ const handleSubmit = async () => {
   formData.append('username', username.value)
   formData.append('password', password.value)
   if (captchaToken.value) {
-    formData.append('captchacat-token', captchaToken.value)
+    formData.append('byebot-token', captchaToken.value)
   }
 
   const res = await fetch('/api/login', {

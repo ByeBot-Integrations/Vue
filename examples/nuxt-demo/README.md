@@ -1,6 +1,6 @@
 # Nuxt Demo
 
-Example Nuxt 3 app using `@captchacat/vue`.
+Example Nuxt 3 app using `@byebot/vue`.
 
 ## Run
 
@@ -16,7 +16,7 @@ Open [http://localhost:3000](http://localhost:3000)
 
 ```
 pages/
-├── index.vue              # Form with Captchacat component
+├── index.vue              # Form with Byebot component
 server/api/
 └── login.post.ts          # Server-side token validation
 ```
